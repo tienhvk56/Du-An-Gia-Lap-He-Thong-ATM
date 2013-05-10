@@ -10,8 +10,8 @@ import java.util.logging.Logger;
  *
  * @author Tung
  */
-public class main {
-    public main(){
+public class Main {
+    public Main(){
         
     }
     public static void main(String[] args){
@@ -21,7 +21,7 @@ public class main {
             if (con.open())
                 System.out.println("KET NOI THANH CONG CSDL!!!");
         }catch (Exception ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

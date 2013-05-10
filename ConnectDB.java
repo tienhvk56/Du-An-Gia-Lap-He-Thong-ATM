@@ -18,10 +18,10 @@ import java.util.logging.Logger;
  * @author Tung
  */
 public class ConnectDB {
-    private PreparedStatement pre = null;
-    private Connection con = null;
-    private Statement stat = null;
-    private ResultSet rs = null;
+    PreparedStatement pre = null;
+    Connection con = null;
+    Statement stat = null;
+    ResultSet rs = null;
     public ConnectDB() throws Exception{
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -32,16 +32,15 @@ public class ConnectDB {
     public ConnectDB(String Driver) throws Exception {
          Class.forName(Driver);
     }
+    //hàm kiểm tra đăng nhập database
     public boolean open() throws Exception {
         boolean temp = false;
         try{
             String userName = "root";
             String password = "123456";
             String url = "jdbc:mysql://127.0.0.1:3306/csdl1";
-// String url = "jdbc:mysql://localhost:3306/test";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection(url,userName,password);
-            //System.out.println("DA KET NOI CSDL ");
+            con = DriverManager.getConnection(url,userName,password); 
             temp = true;
         }
         catch (Exception e){
@@ -49,7 +48,13 @@ public class ConnectDB {
             e.printStackTrace();
             temp = false;
         }
-        return temp;
+        return temp;    
+    }
+    //lệnh truy vấn vào csdl
+    public ResultSet executeQuery(String sql) throws SQLException {
+        stat = con.createStatement();
+        rs = stat.executeQuery(sql);
+        return rs;
     }
     public void close() throws Exception {
             if (rs != null) {
@@ -62,15 +67,7 @@ public class ConnectDB {
                 con = null;
             }
     }
-    public ResultSet doQuery(String sql) throws SQLException { 
-        stat = con.createStatement(); 
-        rs = stat.executeQuery(sql); 
-        return rs; 
-    }
-
-    /*Object prepareStatement(String sql) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }*/
+    
 }
     
 

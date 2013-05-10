@@ -4,48 +4,24 @@
  */
 package Giaodien;
 import thucthehethong.Taikhoan;
-import DataAccess.DLtaikhoan;
+import DataAccess.TruyCapTaiKhoan;
 import DataAccess.ConnectDB;
 import javax.swing.JOptionPane;
-import PhuongThucDK.taikhoanbus;
+import PhuongThucDK.LayGiaTriTK;
 import java.beans.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Tung
  */
-public class login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
-    public login() {
+    public Login() {
         initComponents();
-        /*String TaiKhoan = jTextField1.getText();
-        String MatKhau = String.valueOf(jTextField2.getText());
-        TaiKhoan tk = null;
-        if (TaiKhoan.equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "Vui long nhap Tai Khoan !",
-                    "Null Values !", JOptionPane.ERROR_MESSAGE);
-            jTextField1.requestFocus();
-        }
-        else if (MatKhau.equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "Vui long nhap Mat Khau !",
-                    "Null Values !", JOptionPane.ERROR_MESSAGE);
-            jTextField2.requestFocus();
-        }
-        else {
-            taikhoanbus tkb = null;
-            tkb = new taikhoanbus();
-            tk = tkb.gettaikhoan(TaiKhoan, MatKhau);
-            if (tk!=null){
-                this.dispose();
-                JOptionPane.showMessageDialog(this, "Dang nhap thanh cong ! Xin chào : "
-                        +tk.getHoTen());
-
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Tai khoan khong dung.Vui long nhap lai!");
-            }
-        }*/
+        
     }
 
     /**
@@ -57,13 +33,19 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jPasswordField3 = new javax.swing.JPasswordField();
+
+        jPasswordField1.setText("jPasswordField1");
+
+        jPasswordField2.setText("jPasswordField2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,8 +78,8 @@ public class login extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(jPasswordField3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
@@ -115,8 +97,8 @@ public class login extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(jPasswordField3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
@@ -128,17 +110,16 @@ public class login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 30, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(42, 42, 42)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,7 +129,7 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String TaiKhoan = jTextField1.getText();
-        String Pincode = String.valueOf(jTextField2.getText());
+        String Pincode = String.valueOf(jPasswordField3.getText());
         Taikhoan tk = null;
         if (TaiKhoan.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Vui long nhap Tai Khoan !",
@@ -158,16 +139,22 @@ public class login extends javax.swing.JFrame {
         else if (Pincode.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Vui long nhap Mat Khau !",
                     "Null Values !", JOptionPane.ERROR_MESSAGE);
-            jTextField2.requestFocus();
+            jPasswordField3.requestFocus();
         }
         else {
-            taikhoanbus tkb = null;
-            tkb = new taikhoanbus();
-            tk = tkb.gettaikhoan(TaiKhoan, Pincode);
+            LayGiaTriTK tkb = null;
+            tkb = new LayGiaTriTK();
+            try {
+                tk = tkb.gettaikhoan(TaiKhoan, Pincode);
+            } catch (Exception ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if (tk!=null){
                 this.dispose();
                 JOptionPane.showMessageDialog(this, "Dang nhap thanh cong ! Xin chào : "
                         +tk.getHoTen());
+                ChucNang p = new ChucNang();
+                p.setVisible(true);
             }
             else {
                 JOptionPane.showMessageDialog(this, "Tai khoan khong dung.Vui long nhap lai!");
@@ -197,19 +184,19 @@ public class login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
@@ -219,7 +206,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
